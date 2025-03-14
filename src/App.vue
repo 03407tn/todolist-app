@@ -35,6 +35,13 @@ const toggleTodo = (id: number) => {
 const deleteTodo = (id: number) => {
   todos.value = todos.value.filter(t => t.id !== id)
 }
+
+const editTodo = (id: number, newText: string) => {
+  const todo = todos.value.find(t => t.id === id)
+  if (todo) {
+    todo.text = newText
+  }
+}
 </script>
 
 <template>
@@ -58,6 +65,7 @@ const deleteTodo = (id: number) => {
           :todo="todo"
           @toggle="toggleTodo"
           @delete="deleteTodo"
+          @edit="editTodo"
         />
       </div>
       <div class="todo-list">
@@ -68,6 +76,7 @@ const deleteTodo = (id: number) => {
           :todo="todo"
           @toggle="toggleTodo"
           @delete="deleteTodo"
+          @edit="editTodo"
         />
       </div>
     </div>
